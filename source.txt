@@ -1,0 +1,310 @@
+==============================Order.class========================
+package buy;
+
+public class Order 
+{
+	private String name;
+	private Integer lcd;
+	private Integer ram;
+	private Integer mouse;
+	private Integer sum;
+	private Integer payCash;
+	private Integer changOK;
+	public Order(String name, Integer lcd, Integer ram,Integer mouse) {
+		super();
+		this.name = name;
+		this.lcd = lcd;
+		this.ram = ram;
+		this.mouse = mouse;
+		
+		
+		sum=lcd*4999+ram*1280+mouse*799;
+		
+		if(sum>20000)
+		{
+			sum=(int)(sum*0.95);
+		}
+	}
+	public Order(Integer payCash) {
+		super();
+		this.payCash =payCash;
+		
+		
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getLcd() {
+		return lcd;
+	}
+	public void setLcd(Integer lcd) {
+		this.lcd = lcd;
+	}
+	public Integer getRam() {
+		return ram;
+	}
+	public void setRam(Integer ram) {
+		this.ram = ram;
+	}
+	public Integer getMouse() {
+		return mouse;
+	}
+	public void setMouse(Integer mouse) {
+		this.mouse = mouse;
+	}
+	public Integer getSum() {
+		return sum;
+	}
+	public void setSum(Integer sum) {
+		this.sum = sum;
+	}
+
+	public Integer getPayCash() {
+		return payCash;
+	}
+
+	public void setPayCash(Integer payCash) {
+		this.payCash = payCash;
+	}
+
+	public Integer getChangOK() {
+		return changOK;
+	}
+
+	public void setChangOK(Integer changOK) {
+		this.changOK = changOK;
+	}
+	
+	
+}
+==========================event======================================
+		JButton btnNewButton = new JButton("重置");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				OrderUI n=new OrderUI();
+				n.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(188, 11, 73, 18);
+		panel_1.add(btnNewButton);
+		
+		JButton OK = new JButton("OK");
+		OK.setFont(new Font("新細明體", Font.PLAIN, 25));
+		OK.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				if(member.isSelected())
+				{
+					output.setText("請輸入\n姓名\n各項購買數量\n並選擇身分");
+				}
+				
+				if(A.isSelected()) 
+				{
+					output.setText("(快速地落下鐵籠)"+"\nBoom !"+"\n並彈射出店外 !");
+					if(member.isSelected()) 
+					{
+						output.setText("(「依然」\n快速地落下鐵籠)"+"\nBoom !"+"\n並彈射出店外  !");
+					}
+				}
+				
+				if(B.isSelected()) 
+				{
+					output.setText("~恭迎來店~"+"\n 全額免費 !!!");
+					if(member.isSelected()) 
+					{
+						output.setText("「依然」"+"\n~恭迎來店~"+"\n 全額免費 !!!");
+					}
+				
+				}
+				if(C.isSelected()) 
+				{
+					if(member.isSelected()) 
+					{
+						output.setText("請輸入\n姓名\n各項購買數量");
+					}
+					else
+					{
+						output.setText("請輸入\n姓名\n各項購買數量\n並選擇是否擁有會員身分");
+					}
+				}
+				if(member.isSelected())
+				{
+					if(A.isSelected()) 
+					{
+						output.setText("(「依然」\n快速地落下鐵籠)"+"\nBoom !"+"\n並彈射出店外  !");
+					}
+					
+				}
+				if(member.isSelected())
+				{
+					if(B.isSelected()) 
+					{
+						output.setText("「依然」"+"\n~恭迎來店~"+"\n 全額免費 !!!");
+					}
+				
+					
+				}
+				
+				
+				
+				
+				
+				String Name=name.getText();
+				int Lcd=Integer.parseInt(lcd.getText());
+				int Ram=Integer.parseInt(ram.getText());
+				int Mouse=Integer.parseInt(mouse.getText());
+				
+				Order o=new Order(Name,Lcd,Ram,Mouse);
+				if(C.isSelected()) 
+				{
+					if(member.isSelected()) 
+					{
+						output.setText("姓名:"+o.getName()+
+								"\nLCD:"+o.getLcd()+
+								"\nRAM:"+o.getRam()+
+								"\nMouse:"+o.getMouse()+
+								"\n成交金額:"+(int)(o.getSum()*0.95));
+					}
+					else
+					{
+						output.setText("姓名:"+o.getName()+
+								"\nLCD:"+o.getLcd()+
+								"\nRAM:"+o.getRam()+
+								"\nMouse:"+o.getMouse()+
+								"\n成交金額:"+o.getSum());
+					}
+				}	
+								
+				if(member.isSelected()) 
+				{
+					output.setText("姓名:"+o.getName()+
+							"\nLCD:"+o.getLcd()+
+							"\nRAM:"+o.getRam()+
+							"\nMouse:"+o.getMouse()+
+							"\n成交金額:"+(int)(o.getSum()*0.95));
+					if(A.isSelected()) 
+					{
+						output.setText("(「依然」\n快速地落下鐵籠)"+"\nBoom !"+"\n並彈射出店外  !");
+					}
+					
+					if(B.isSelected()) 
+					{
+						output.setText("「依然」"+"\n~恭迎來店~"+"\n 全額免費 !!!");
+					}
+					
+
+				}
+				else
+				{
+					output.setText("姓名:"+o.getName()+
+							"\nLCD:"+o.getLcd()+
+							"\nRAM:"+o.getRam()+
+							"\nMouse:"+o.getMouse()+
+							"\n成交金額:"+o.getSum());
+					if(A.isSelected()) 
+					{
+						output.setText("(快速地落下鐵籠)"+"\nBoom !"+"\n並彈射出店外 !");
+					}
+					
+					if(B.isSelected()) 
+					{
+						output.setText("~恭迎來店~"+"\n 全額免費 !!!");
+					}
+					
+					
+				}
+				
+				
+			}
+		});
+		OK.setBounds(10, 10, 135, 33);
+		panel_1_1.add(OK);
+		
+		JButton Test = new JButton("顧客霸王單警報器");
+		Test.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				test t=new test();
+				t.setVisible(true);
+				dispose();
+			}
+		});
+		Test.setBounds(155, 20, 156, 23);
+		panel_1_1.add(Test);
+		
+		JButton btnPrint = new JButton("print");
+		btnPrint.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					output.print();
+				} catch (PrinterException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnPrint.setBounds(321, 20, 75, 23);
+		panel_1_1.add(btnPrint);
+		
+		JButton btnPrint_1 = new JButton("離開");
+		btnPrint_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				System.exit(0);
+			}
+		});
+		btnPrint_1.setBounds(406, 20, 69, 23);
+		panel_1_1.add(btnPrint_1);
+		
+		JTextArea output2 = new JTextArea();
+		output2.setBounds(325, 165, 193, 112);
+		contentPane.add(output2);
+		
+		JButton changeOK = new JButton("找錢確定");
+		changeOK.setBounds(356, 132, 87, 23);
+		changeOK.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				String Name=name.getText();
+				int Lcd=Integer.parseInt(lcd.getText());
+				int Ram=Integer.parseInt(ram.getText());
+				int Mouse=Integer.parseInt(mouse.getText());
+			
+				
+				Order o=new Order(Name,Lcd,Ram,Mouse);
+				
+				int Paycash=Integer.parseInt(payCash.getText());
+				
+				Order c=new Order(Paycash);
+								
+				if(member.isSelected()) 
+				{
+					output2.setText("找回金額共:"+"\t"+(c.getPayCash()-(int)(o.getSum()*0.95))+
+							"\n\n千元鈔張數:\t"+(c.getPayCash()-(int)(o.getSum()*0.95))/1000%1000+
+							"\n百元鈔張數:\t"+(((c.getPayCash()-(int)(o.getSum()*0.95))-(c.getPayCash()-(int)(o.getSum()*0.95))/1000%1000*1000)/100%100)+
+							"\n零錢:\t"+(c.getPayCash()-(int)(o.getSum()*0.95))%1000%100
+							);
+							
+				}
+				else
+				{
+					output2.setText("找回金額共:"+"\t"+(c.getPayCash()-o.getSum())+
+							"\n\n千元鈔張數:\t"+(c.getPayCash()-o.getSum())/1000%1000+
+							"\n百元鈔張數:\t"+((c.getPayCash()-o.getSum())-(c.getPayCash()-o.getSum())/1000%1000*1000)/100%100+
+							"\n零錢:\t"+(c.getPayCash()-o.getSum())%1000%100
+							);
+				}
+			}
+			{
+			}
+		});
